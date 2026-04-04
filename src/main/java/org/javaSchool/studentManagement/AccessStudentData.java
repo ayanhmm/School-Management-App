@@ -50,7 +50,7 @@ public class AccessStudentData {
             if(studentManagementAction.equals(StudentManagementAction.INVALID_ACTION)) return;
 
             Map<String, Object> params = new HashMap<>();
-            params.put("Action", studentManagementAction);
+            params.put("Action", studentManagementAction.toString());
             params.put("ID", 1);
             params.put("Name", "Ayan");
 
@@ -90,8 +90,25 @@ public class AccessStudentData {
         Map<String, Object> output = new HashMap<>();
         output.put("RequestParams", params);
 
-        // TODO :: communicate with the database
+        if(!params.containsKey("Action")){
+            output.put("Error", "Action is not present in params");
+            return output;
+        }
+        StudentManagementAction action = StudentManagementAction.fromString((String) params.get("Action"));
+        if(StudentManagementAction.INVALID_ACTION.equals(action)){
+            output.put("Error", "Action is Invalid");
+            return output;
+        }
 
+        Student student = getStudentFromParams(params);
+        output.putAll( StudentDao.execute(action, student));
         return output;
+    }
+
+    private static Student getStudentFromParams(Map<String, Object> params){
+        Student student = new Student();
+        if(params.containsKey("ID")) student.setId((Integer) params.get("ID"));
+        if(params.containsKey("Name")) student.setName((String) params.get("Name"));
+        return student;
     }
 }
