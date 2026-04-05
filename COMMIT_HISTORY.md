@@ -48,7 +48,15 @@
 - Created Lookup maps for all enums to improve assignment logic 
 
 ### Unit Testing
-- imported MAVEN dependancy for JUnit for testing purposes
+- imported MAVEN dependency for JUnit for testing purposes
 - JUnit is an opensource testing framework for Java used for unit testing
 - inside src >test >java created studentManagementTests package to add unit tests for the same
 - Added tests for accessStudentData function.
+
+### Added Rest API Accessibility
+- imported MAVEN dependency for Spring for the same
+- Spring gives Built-in Web Server
+- created SchoolAppRestAPI as a root api endpoint for the app and class StudentApp to host the spring boot application
+- Springboot already contains Logback -> removed dependency from pom file
+- Tested this app via postman
+  - http: //localhost:8080 /javaschool/health
