@@ -91,7 +91,7 @@ public class AccessStudentData {
     /*
     use this method directly if accessing via API calls
      */
-    private static Map<String, Object> accessStudentData(Map<String, Object> params){
+    public static Map<String, Object> accessStudentData(Map<String, Object> params){
         Map<String, Object> output = new HashMap<>();
         output.put(JsonOutputFields.REQUEST_PARAMS.getValue(), params);
 

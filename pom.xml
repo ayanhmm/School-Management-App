@@ -36,6 +36,14 @@
             <version>1.5.6</version>
         </dependency>
 
+        <!--    For unit testing    -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 

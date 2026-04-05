@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -62,9 +63,14 @@ public class StudentDao {
             PreparedStatement preparedStatement = getPreparedStatement(action, student, connection);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            Set<Map<String, String>> result = new HashSet<>();
             while(resultSet.next()){
-                System.out.println(resultSet.getInt("id") + " :: " + resultSet.getString("name"));
+                Map<String, String> row = new HashMap<>();
+                row.put("id", String.valueOf(resultSet.getInt("id")));
+                row.put("name", resultSet.getString("name"));
+                result.add(row);
             }
+            output.put(JsonOutputFields.REQUEST_RESULT.getValue(), result);
 
             successBoolean = true;
         }

@@ -9,6 +9,7 @@ public enum JsonOutputFields {
     ERROR_CODE("Error Code"),
     SUCCESS_BOOLEAN("Success Boolean"),
     REQUEST_PARAMS("Request params"),
+    REQUEST_RESULT("Request result"),
     CANNOT_DETERMINE_FIELD("Field not identified");
 
     private final String value;

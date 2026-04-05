@@ -46,3 +46,9 @@
 - Added Utils package to provide common utilities needed by other packages
 - Created JsonOutputFields to standardize the names of various fields present in the output fields of various json/map outputs across classes  
 - Created Lookup maps for all enums to improve assignment logic 
+
+### Unit Testing
+- imported MAVEN dependancy for JUnit for testing purposes
+- JUnit is an opensource testing framework for Java used for unit testing
+- inside src >test >java created studentManagementTests package to add unit tests for the same
+- Added tests for accessStudentData function.
