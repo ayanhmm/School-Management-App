@@ -60,3 +60,9 @@
 - Springboot already contains Logback -> removed dependency from pom file
 - Tested this app via postman
   - http: //localhost:8080 /javaschool/health
+
+### API for Student Management
+- Added StudentManagementRestAPI as a common API handler for all classes related to StudentManagement package
+- Added @Operation annotation to api methods to explain their functionality 
+- imported openAPI MAVEN dependency for the same
+- Created JsonInputFields to standardize the names of various fields present in the input fields of various json/map inputs across classes  

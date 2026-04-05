@@ -1,5 +1,6 @@
 package org.javaSchool.studentManagement;
 
+import org.javaSchool.utils.JsonInputFields;
 import org.javaSchool.utils.JsonOutputFields;
 
 import java.io.BufferedReader;
@@ -55,9 +56,9 @@ public class AccessStudentData {
             if(studentManagementAction.equals(StudentManagementAction.INVALID_ACTION)) return;
 
             Map<String, Object> params = new HashMap<>();
-            params.put("Action", studentManagementAction.toString());
-            params.put("ID", 1);
-            params.put("Name", "Ayan");
+            params.put(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue(), studentManagementAction.toString());
+            params.put(JsonInputFields.ENTITY_ID.getValue(), 1);
+            params.put(JsonInputFields.ENTITY_NAME.getValue(), "Ayan");
 
             Map<String, Object> output = accessStudentData(params);
             System.out.println(output);
@@ -95,11 +96,11 @@ public class AccessStudentData {
         Map<String, Object> output = new HashMap<>();
         output.put(JsonOutputFields.REQUEST_PARAMS.getValue(), params);
 
-        if(!params.containsKey("Action")){
+        if(!params.containsKey(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue())){
             output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Action field is not present in params");
             return output;
         }
-        StudentManagementAction action = StudentManagementAction.fromString((String) params.get("Action"));
+        StudentManagementAction action = StudentManagementAction.fromString((String) params.get(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue()));
         if(StudentManagementAction.INVALID_ACTION.equals(action)){
             output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Specified action is Invalid");
             return output;
@@ -112,8 +113,8 @@ public class AccessStudentData {
 
     private static Student getStudentFromParams(Map<String, Object> params){
         Student student = new Student();
-        if(params.containsKey("ID")) student.setId((Integer) params.get("ID"));
-        if(params.containsKey("Name")) student.setName((String) params.get("Name"));
+        if(params.containsKey(JsonInputFields.ENTITY_ID.getValue())) student.setId((Integer) params.get(JsonInputFields.ENTITY_ID.getValue()));
+        if(params.containsKey(JsonInputFields.ENTITY_NAME.getValue())) student.setName((String) params.get(JsonInputFields.ENTITY_NAME.getValue()));
         return student;
     }
 }
