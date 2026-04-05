@@ -91,12 +91,12 @@ public class AccessStudentData {
         output.put("RequestParams", params);
 
         if(!params.containsKey("Action")){
-            output.put("Error", "Action is not present in params");
+            output.put("Error", "Action field is not present in params");
             return output;
         }
         StudentManagementAction action = StudentManagementAction.fromString((String) params.get("Action"));
         if(StudentManagementAction.INVALID_ACTION.equals(action)){
-            output.put("Error", "Action is Invalid");
+            output.put("Error", "Specified action is Invalid");
             return output;
         }
 
