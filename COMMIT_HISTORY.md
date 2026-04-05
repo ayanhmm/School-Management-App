@@ -45,3 +45,4 @@
 ### Added Utils
 - Added Utils package to provide common utilities needed by other packages
 - Created JsonOutputFields to standardize the names of various fields present in the output fields of various json/map outputs across classes  
+- Created Lookup maps for all enums to improve assignment logic 

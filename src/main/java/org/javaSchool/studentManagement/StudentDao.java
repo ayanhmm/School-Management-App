@@ -1,6 +1,7 @@
 package org.javaSchool.studentManagement;
 
 import org.javaSchool.databaseConnectivity.mysql.ConnectionProvider;
+import org.javaSchool.utils.JsonOutputFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,8 +30,8 @@ public class StudentDao {
         if(UPDATE_ACTIONS.contains(action)) output.putAll(executeUpdateAction(action, student));
         else if(QUERY_ACTIONS.contains(action)) output.putAll(executeQueryAction(action, student));
         else{
-            output.put("Error", "StudentDao.execute() does not have implementation type defined for the action");
-            output.put("Success", false);
+            output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "StudentDao.execute() does not have implementation type defined for the action");
+            output.put(JsonOutputFields.SUCCESS_BOOLEAN.getValue(), false);
         }
         return output;
     }
@@ -46,10 +47,10 @@ public class StudentDao {
         }
         catch (Exception ex){
             LOGGER.warn("Unable to perform update action to MySQL Database", ex);
-            output.put("Error", "Unable to perform update action to MySQL Database: {}");
+            output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Unable to perform update action to MySQL Database: {}");
         }
 
-        output.put("Success", successBoolean);
+        output.put(JsonOutputFields.SUCCESS_BOOLEAN.getValue(), successBoolean);
         return output;
     }
     private static Map<String, Object> executeQueryAction(AccessStudentData.StudentManagementAction action, Student student){
@@ -69,10 +70,10 @@ public class StudentDao {
         }
         catch (Exception ex){
             LOGGER.warn("Unable to perform query action to MySQL Database", ex);
-            output.put("Error", "Unable to perform query action to MySQL Database: {}");
+            output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Unable to perform query action to MySQL Database: {}");
         }
 
-        output.put("Success", successBoolean);
+        output.put(JsonOutputFields.SUCCESS_BOOLEAN.getValue(), successBoolean);
         return output;
     }
 

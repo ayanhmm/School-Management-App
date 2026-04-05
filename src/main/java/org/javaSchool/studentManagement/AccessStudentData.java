@@ -1,5 +1,7 @@
 package org.javaSchool.studentManagement;
 
+import org.javaSchool.utils.JsonOutputFields;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,6 +24,12 @@ public class AccessStudentData {
         INVALID_ACTION("INVALID_ACTION");
 
         private final String value;
+        private static final Map<String, StudentManagementAction> LOOKUP = new HashMap<>();
+        static {
+            for (StudentManagementAction action : values()) {
+                LOOKUP.put(action.value, action);
+            }
+        }
 
         StudentManagementAction(String value) {
             this.value = value;
@@ -32,10 +40,7 @@ public class AccessStudentData {
         }
 
         public static StudentManagementAction fromString(String value){
-            for(StudentManagementAction action : StudentManagementAction.values()){
-                if(Objects.equals(action.value, value)) return action;
-            }
-            return INVALID_ACTION;
+            return LOOKUP.getOrDefault(value, INVALID_ACTION);
         }
 
     }
@@ -88,15 +93,15 @@ public class AccessStudentData {
      */
     private static Map<String, Object> accessStudentData(Map<String, Object> params){
         Map<String, Object> output = new HashMap<>();
-        output.put("RequestParams", params);
+        output.put(JsonOutputFields.REQUEST_PARAMS.getValue(), params);
 
         if(!params.containsKey("Action")){
-            output.put("Error", "Action field is not present in params");
+            output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Action field is not present in params");
             return output;
         }
         StudentManagementAction action = StudentManagementAction.fromString((String) params.get("Action"));
         if(StudentManagementAction.INVALID_ACTION.equals(action)){
-            output.put("Error", "Specified action is Invalid");
+            output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Specified action is Invalid");
             return output;
         }
 
