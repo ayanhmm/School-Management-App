@@ -77,3 +77,16 @@
 - Instead of taking input as a map, the accessStudentDataAPI now utilizes the newly created dto 
   - the previous method marked as @Depricated
   - Still getting ambiguous mapping error, introduces versioning in API endpoint
+
+### Additional APIs and Queries
+- introduces new API endpoint 
+  - /possibleInputFields so that frontend knows what possible fields they can share 
+  - /accessData/possibleActions to List Possible actions for accessStudentDataAPI Json input.
+- Added Display all students query to AccessStudentData.
+- Added Update student query to AccessStudentData.
+- Extracted Query Logic from StudentDao to its utils to prevent cluttering of the class
+
+
+- Also Extracted setParameters for prepared statement logic from above.
+- ms for apis
+- Queries in config

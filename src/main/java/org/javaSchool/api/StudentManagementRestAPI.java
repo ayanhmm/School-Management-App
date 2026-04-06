@@ -1,10 +1,7 @@
 package org.javaSchool.api;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import org.javaSchool.models.DTO.AccessStudentDataDTO;
 import org.javaSchool.studentManagement.AccessStudentData;
@@ -14,7 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/javaschool/student")
@@ -46,5 +45,18 @@ public class StudentManagementRestAPI {
         if(accessStudentDataDTO.getName() != null)params.put(JsonInputFields.ENTITY_NAME.getValue(), accessStudentDataDTO.getName());
         LOGGER.info("accessStudentDataAPI API hit with params : {}", params);
         return AccessStudentData.accessStudentData(params);
+    }
+
+    @GetMapping
+    @RequestMapping("/accessData/possibleActions")
+    @Operation(
+            operationId = "List Possible actions for accessStudentDataAPI Json input"
+    )
+    public Set<String> listPossibleActions(@RequestBody AccessStudentDataDTO accessStudentDataDTO){
+        Set<String> output = new HashSet<>();
+        for(AccessStudentData.StudentManagementAction field : AccessStudentData.StudentManagementAction.values()){
+            output.add(field.getValue()) ;
+        }
+        return output;
     }
 }

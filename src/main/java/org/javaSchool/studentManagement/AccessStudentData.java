@@ -21,6 +21,8 @@ public class AccessStudentData {
         ADD_STUDENT("ADD_STUDENT"),
         DELETE_STUDENT("DELETE_STUDENT"),
         DISPLAY_STUDENT("DISPLAY_STUDENT"),
+        DISPLAY_ALL_STUDENTS("DISPLAY_ALL_STUDENTS"),
+        UPDATE_STUDENT("UPDATE_STUDENT"),
         INVALID_ACTION("INVALID_ACTION");
 
         private final String value;
@@ -56,7 +58,7 @@ public class AccessStudentData {
 
             Map<String, Object> params = new HashMap<>();
             params.put(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue(), studentManagementAction.toString());
-            params.put(JsonInputFields.ENTITY_ID.getValue(), 1);
+            params.put(JsonInputFields.ENTITY_ID.getValue(), 2);
             params.put(JsonInputFields.ENTITY_NAME.getValue(), "Ayan");
 
             Map<String, Object> output = accessStudentData(params);
@@ -70,7 +72,9 @@ public class AccessStudentData {
         System.out.println("press 1 to ADD_STUDENT");
         System.out.println("press 2 to DELETE_STUDENT");
         System.out.println("press 3 to DISPLAY_STUDENT");
-        System.out.println("press 4 to Exit");
+        System.out.println("press 4 to DISPLAY_ALL_STUDENTS");
+        System.out.println("press 5 to UPDATE_STUDENT");
+        System.out.println("enter any other number to Exit");
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         try{
@@ -83,6 +87,8 @@ public class AccessStudentData {
             case 1 -> StudentManagementAction.ADD_STUDENT;
             case 2 -> StudentManagementAction.DELETE_STUDENT;
             case 3 -> StudentManagementAction.DISPLAY_STUDENT;
+            case 4 -> StudentManagementAction.DISPLAY_ALL_STUDENTS;
+            case 5 -> StudentManagementAction.UPDATE_STUDENT;
             default -> StudentManagementAction.INVALID_ACTION;
         };
         return action;

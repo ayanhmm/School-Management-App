@@ -1,7 +1,6 @@
 package org.javaSchool.studentManagement;
 
 import org.javaSchool.databaseConnectivity.mysql.ConnectionProvider;
-import org.javaSchool.utils.JsonFieldsTextValues;
 import org.javaSchool.utils.JsonOutputFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,16 +13,20 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static org.javaSchool.studentManagement.studentDaoUtils.GetQueryForPreparedStatement.getQueryForPreparedStatement;
+
 public class StudentDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentDao.class);
 
     private static final Set<AccessStudentData.StudentManagementAction> UPDATE_ACTIONS = Set.of(
             AccessStudentData.StudentManagementAction.ADD_STUDENT,
-            AccessStudentData.StudentManagementAction.DELETE_STUDENT
+            AccessStudentData.StudentManagementAction.DELETE_STUDENT,
+            AccessStudentData.StudentManagementAction.UPDATE_STUDENT
     );
 
     private static final Set<AccessStudentData.StudentManagementAction> QUERY_ACTIONS = Set.of(
-            AccessStudentData.StudentManagementAction.DISPLAY_STUDENT
+            AccessStudentData.StudentManagementAction.DISPLAY_STUDENT,
+            AccessStudentData.StudentManagementAction.DISPLAY_ALL_STUDENTS
     );
 
     public static Map<String, Object> execute(AccessStudentData.StudentManagementAction action, Student student){
@@ -86,7 +89,7 @@ public class StudentDao {
 
     private static PreparedStatement getPreparedStatement(AccessStudentData.StudentManagementAction action, Student student, Connection connection)
         throws Exception{
-        String query = preparedStatementQuery(action);
+        String query = getQueryForPreparedStatement(action);
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             setParameters(action, student, preparedStatement);
@@ -96,28 +99,32 @@ public class StudentDao {
             throw ex;
         }
     }
-    private static String preparedStatementQuery(AccessStudentData.StudentManagementAction action){
-        return switch (action){
-            case ADD_STUDENT -> addStudentQuery();
-            case DELETE_STUDENT -> deleteStudentQuery();
-            case DISPLAY_STUDENT -> displayStudentQuery();
-            default -> "";
-        };
-    }
-    private static String addStudentQuery(){
-        return "insert into students(id, name) values (?, ?)";
-    }
-    private static String deleteStudentQuery(){
-        return "delete from students where id = ?";
-    }
-    private static String displayStudentQuery(){
-        return "select * from students where id = ?";
-    }
     private static void setParameters(AccessStudentData.StudentManagementAction action, Student student, PreparedStatement preparedStatement)
         throws Exception{
+
+//        those actions which donot require an ID
+        final Set<AccessStudentData.StudentManagementAction> GENERIC_ACTIONS = Set.of(
+                AccessStudentData.StudentManagementAction.DISPLAY_ALL_STUDENTS
+        );
+
+//        those actions which require a name
+        final Set<AccessStudentData.StudentManagementAction> NAME_ACTIONS = Set.of(
+                AccessStudentData.StudentManagementAction.ADD_STUDENT,
+                AccessStudentData.StudentManagementAction.UPDATE_STUDENT
+        );
+
         try{
+            if(GENERIC_ACTIONS.contains(action)) return;
+
+            if(action.equals(AccessStudentData.StudentManagementAction.UPDATE_STUDENT)){
+                if(NAME_ACTIONS.contains(action)) preparedStatement.setString(1, student.getName());
+                preparedStatement.setInt(2, student.getId());
+                return;
+
+            }
+
             preparedStatement.setInt(1, student.getId());
-            if(action.equals(AccessStudentData.StudentManagementAction.ADD_STUDENT)) preparedStatement.setString(2, student.getName());
+            if(NAME_ACTIONS.contains(action)) preparedStatement.setString(2, student.getName());
         } catch (Exception ex) {
             LOGGER.warn("Unable to setParameters in prepared statement for MySQL Database: {}", ex.getMessage());
             throw ex;
