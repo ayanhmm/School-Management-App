@@ -86,6 +86,16 @@
 - Added Update student query to AccessStudentData.
 - Extracted Query Logic from StudentDao to its utils to prevent cluttering of the class
 
+### Query Configs
+- created directory resources.configs to store all config files
+- created package configs to store all config extraction logic
+  - configs.reader package to abstract logic to read all configs
+  - created configReader class to run and extract all configs at runtime itself
+  - Created queriesConfigReader package to store classes with logic to read the json files for type query config
+    - Added @JsonIgnoreProperties(ignoreUnknown = true) to avoid error due to extra fields
+    - updated build section of pom.xml so that it can now read json files
+  - Created QueryRegistry to store extracted queries
+- Extracted Query logic outside StudentDao to get from configs
 
 - Also Extracted setParameters for prepared statement logic from above.
 - ms for apis
