@@ -4,16 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum JsonInputFields {
-        CANNOT_DETERMINE_FIELD("Field not identified"),
-        STUDENT_MANAGEMENT_ACTION("Student Management Action"),
-        ENTITY_ID("ID"),
-        ENTITY_NAME("Name");
+    CANNOT_DETERMINE_FIELD(JsonFieldsTextValues.CANNOT_DETERMINE_FIELD),
+    STUDENT_MANAGEMENT_ACTION(JsonFieldsTextValues.STUDENT_MANAGEMENT_ACTION),
+    ENTITY_ID(JsonFieldsTextValues.ENTITY_ID),
+    ENTITY_NAME(JsonFieldsTextValues.ENTITY_NAME);
 
-        private final String value;
-        private static final Map<String, JsonInputFields> LOOKUP = new HashMap<>();
-        static {
-        for (JsonInputFields field : values()) {
-            LOOKUP.put(field.value, field);
+    private final String value;
+
+    private static final Map<String, JsonInputFields> LOOKUP = new HashMap<>();
+    static {
+    for (JsonInputFields field : values()) {
+        LOOKUP.put(field.value, field);
         }
     }
 

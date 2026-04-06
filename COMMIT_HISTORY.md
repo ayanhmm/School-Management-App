@@ -26,13 +26,13 @@
 - USE student_manage
 - create table students(id int PRIMARY KEY, name VARCHAR(100));
 
-### Added MySQL connectivity via JDBC
+### MySQL connectivity via JDBC
 - completed implementation of method accessStudentData in class AccessStudentData
 - created studentDao class to manipulate student data in mysql database.
 - DAO stands for Data Access Object, a design pattern used to separate database operations from business logic  
 - added mysql connector jar maven dependency and created ConnectionProvider for mysql
 
-### Logs for proper debugging
+### Logs 
 - Added MAVEN dependencies for slf4j API for logging
   - This was chosen because it acts as an abstraction layer, it makes the application logging dependant on an interface rather than a specific logging engine
   - hence, it is flexible - allows switching logging implementation without changing the production code
@@ -42,7 +42,7 @@
 - Added Logging wherever deemed necessary
 - Switched to newer Java 21 
 
-### Added Utils
+### Utils
 - Added Utils package to provide common utilities needed by other packages
 - Created JsonOutputFields to standardize the names of various fields present in the output fields of various json/map outputs across classes  
 - Created Lookup maps for all enums to improve assignment logic 
@@ -53,7 +53,7 @@
 - inside src >test >java created studentManagementTests package to add unit tests for the same
 - Added tests for accessStudentData function.
 
-### Added Rest API Accessibility
+### Rest API Accessibility
 - imported MAVEN dependency for Spring for the same
 - Spring gives Built-in Web Server
 - created SchoolAppRestAPI as a root api endpoint for the app and class StudentApp to host the spring boot application
@@ -61,8 +61,19 @@
 - Tested this app via postman
   - http: //localhost:8080 /javaschool/health
 
-### API for Student Management
+### Student Management API
 - Added StudentManagementRestAPI as a common API handler for all classes related to StudentManagement package
 - Added @Operation annotation to api methods to explain their functionality 
 - imported openAPI MAVEN dependency for the same
 - Created JsonInputFields to standardize the names of various fields present in the input fields of various json/map inputs across classes  
+
+### Data Transfer Objects
+- Created package models.DTO to store all the DTO classes
+- created a dto to take request input in the accessStudentDataAPI class
+- used @JsonProperty to define what input gets mapped where
+  - @JsonProperty does not work if parameter is dynamic which happens when we put JsonInputFields.ENTITY_ID.getValue() as parameter
+  - Hence updated jsonInputFields to have Strings declared as constants fetched from JsonFieldsTextValues class - similarly updated jsonOutputFields for consistency
+  - then those constants are used in constructors of JsonInputFields as well as input for @JsonProperty
+- Instead of taking input as a map, the accessStudentDataAPI now utilizes the newly created dto 
+  - the previous method marked as @Depricated
+  - Still getting ambiguous mapping error, introduces versioning in API endpoint

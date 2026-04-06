@@ -1,6 +1,7 @@
 package org.javaSchool.studentManagement;
 
 import org.javaSchool.databaseConnectivity.mysql.ConnectionProvider;
+import org.javaSchool.utils.JsonFieldsTextValues;
 import org.javaSchool.utils.JsonOutputFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,8 +67,8 @@ public class StudentDao {
             Set<Map<String, String>> result = new HashSet<>();
             while(resultSet.next()){
                 Map<String, String> row = new HashMap<>();
-                row.put("id", String.valueOf(resultSet.getInt("id")));
-                row.put("name", resultSet.getString("name"));
+                row.put(JsonOutputFields.ENTITY_ID.getValue(), String.valueOf(resultSet.getInt("id")));
+                row.put(JsonOutputFields.ENTITY_NAME.getValue(), resultSet.getString("name"));
                 result.add(row);
             }
             output.put(JsonOutputFields.REQUEST_RESULT.getValue(), result);

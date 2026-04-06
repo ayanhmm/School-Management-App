@@ -5,12 +5,17 @@ import java.util.Map;
 import java.util.Objects;
 
 public enum JsonOutputFields {
-    ERROR_MESSAGE("Error Message"),
-    ERROR_CODE("Error Code"),
-    SUCCESS_BOOLEAN("Success Boolean"),
-    REQUEST_PARAMS("Request params"),
-    REQUEST_RESULT("Request result"),
-    CANNOT_DETERMINE_FIELD("Field not identified");
+    ERROR_MESSAGE(JsonFieldsTextValues.ERROR_MESSAGE),
+    ERROR_CODE(JsonFieldsTextValues.ERROR_CODE),
+    SUCCESS_BOOLEAN(JsonFieldsTextValues.SUCCESS_BOOLEAN),
+
+    REQUEST_PARAMS(JsonFieldsTextValues.REQUEST_PARAMS),
+    REQUEST_RESULT(JsonFieldsTextValues.REQUEST_RESULT),
+
+    ENTITY_ID(JsonFieldsTextValues.ENTITY_ID),
+    ENTITY_NAME(JsonFieldsTextValues.ENTITY_NAME),
+
+    CANNOT_DETERMINE_FIELD(JsonFieldsTextValues.CANNOT_DETERMINE_FIELD);
 
     private final String value;
     private static final Map<String, JsonOutputFields> LOOKUP = new HashMap<>();

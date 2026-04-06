@@ -1,15 +1,19 @@
 package org.javaSchool.api;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.javaSchool.studentManagement.AccessStudentData;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.slf4j.Logger;
+import org.javaSchool.models.DTO.AccessStudentDataDTO;
+import org.javaSchool.studentManagement.AccessStudentData;
+import org.javaSchool.utils.JsonInputFields;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -18,12 +22,28 @@ public class StudentManagementRestAPI {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentManagementRestAPI.class);
 
     @PostMapping
+    @RequestMapping("/accessData/v1")
+    @Operation(
+            operationId = "Access Students Database",
+            description = "Allows management of data for students"
+    )
+    @Deprecated(since = "new method introduced to handle accessStudentDataDTO")
+    public Map<String, Object> accessStudentDataAPI(@RequestBody Map<String, Object> params){
+        LOGGER.info("accessStudentDataAPI v1 API hit with params : {}", params);
+        return AccessStudentData.accessStudentData(params);
+    }
+
+    @PostMapping
     @RequestMapping("/accessData")
     @Operation(
             operationId = "Access Students Database",
             description = "Allows management of data for students"
     )
-    public Map<String, Object> accessStudentDataAPI(@RequestBody Map<String, Object> params){
+    public Map<String, Object> accessStudentDataAPI(@RequestBody AccessStudentDataDTO accessStudentDataDTO){
+        Map<String, Object> params = new HashMap<>();
+        if(accessStudentDataDTO.getStudentManagementAction() != null)params.put(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue(), accessStudentDataDTO.getStudentManagementAction().toString());
+        if(accessStudentDataDTO.getId() != null)params.put(JsonInputFields.ENTITY_ID.getValue(), accessStudentDataDTO.getId());
+        if(accessStudentDataDTO.getName() != null)params.put(JsonInputFields.ENTITY_NAME.getValue(), accessStudentDataDTO.getName());
         LOGGER.info("accessStudentDataAPI API hit with params : {}", params);
         return AccessStudentData.accessStudentData(params);
     }
