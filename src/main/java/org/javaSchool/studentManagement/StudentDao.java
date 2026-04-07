@@ -1,6 +1,7 @@
 package org.javaSchool.studentManagement;
 
 import org.javaSchool.databaseConnectivity.mysql.ConnectionProvider;
+import org.javaSchool.studentManagement.studentDaoUtils.SetParametersForPreparedStatement;
 import org.javaSchool.utils.JsonOutputFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,17 +93,19 @@ public class StudentDao {
         String query = getQueryForPreparedStatement(action);
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            setParameters(action, student, preparedStatement);
+            SetParametersForPreparedStatement.setParameters(action, student, preparedStatement);
             return preparedStatement;
         } catch (Exception ex) {
             LOGGER.warn("Unable to getPreparedStatement for MySQL Database: {}", ex.getMessage());
             throw ex;
         }
     }
+
+    @Deprecated
     private static void setParameters(AccessStudentData.StudentManagementAction action, Student student, PreparedStatement preparedStatement)
         throws Exception{
 
-//        those actions which donot require an ID
+//        those actions which do not require an ID
         final Set<AccessStudentData.StudentManagementAction> GENERIC_ACTIONS = Set.of(
                 AccessStudentData.StudentManagementAction.DISPLAY_ALL_STUDENTS
         );

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigRegistry {
-    private static Map<RegistryKey, Object> REGISTRY = new HashMap<>();
+    private static final Map<RegistryKey, Object> REGISTRY = new HashMap<>();
 
     public static void addConfigToRegistry(String type, String subtype, String name, Object value){
         RegistryKey registryKey = new RegistryKey(type, subtype, name);

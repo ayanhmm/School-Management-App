@@ -20,8 +20,7 @@ import java.util.Set;
 public class StudentManagementRestAPI {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentManagementRestAPI.class);
 
-    @PostMapping
-    @RequestMapping("/accessData/v1")
+    @PostMapping("/accessData/v1")
     @Operation(
             operationId = "Access Students Database",
             description = "Allows management of data for students"
@@ -32,8 +31,7 @@ public class StudentManagementRestAPI {
         return AccessStudentData.accessStudentData(params);
     }
 
-    @PostMapping
-    @RequestMapping("/accessData")
+    @PostMapping("/accessData")
     @Operation(
             operationId = "Access Students Database",
             description = "Allows management of data for students"
@@ -47,12 +45,11 @@ public class StudentManagementRestAPI {
         return AccessStudentData.accessStudentData(params);
     }
 
-    @GetMapping
-    @RequestMapping("/accessData/possibleActions")
+    @GetMapping("/accessData/possibleActions")
     @Operation(
             operationId = "List Possible actions for accessStudentDataAPI Json input"
     )
-    public Set<String> listPossibleActions(@RequestBody AccessStudentDataDTO accessStudentDataDTO){
+    public Set<String> listPossibleActions(){
         Set<String> output = new HashSet<>();
         for(AccessStudentData.StudentManagementAction field : AccessStudentData.StudentManagementAction.values()){
             output.add(field.getValue()) ;

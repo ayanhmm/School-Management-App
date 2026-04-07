@@ -1,4 +1,4 @@
-package org.javaSchool.api;
+package org.javaSchool;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,7 @@ public class StudentApp {
     /*
     Default API Endpoint :: http://localhost:8080/
      */
-    public static void main(String args[]){
+    public static void main(String[] args){
         SpringApplication.run(StudentApp.class, args);
     }
 }

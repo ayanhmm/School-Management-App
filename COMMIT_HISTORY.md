@@ -1,7 +1,7 @@
 ### Created basic Structure
 - Created base structure of the App utilizing Maven Build System
 - Added readme and commit_history markdown websites
-- created dirgit ectories using reverse domain name notation
+- created directories using reverse domain name notation
 
 ### Created Basic Classes
 - Created student class to represent one student based on id, name and other details
@@ -102,6 +102,18 @@
 - RegistryKey to act as key to store configs in registry
   - hashCode() override used inside for utilization in Hash-based Collections, such as HashMap, HashSet, or Hashtable
 
-- Also Extracted setParameters for prepared statement logic from above.
+### Config integration
+- updated GetQueryForPreparedStatement in StudentDao to use configRegistry.
+- Extracted SetParameters to preparedStatement logic outside StudentDao to get from configs
+- Marked ConfigRegistry class as @Component which tells spring this class has a method that needs to run at startup
+  - Marked the above method named init() using @PostConstruct
+  - Spring was not detecting the declared @component
+    - because it only checks classes inside the package the studentApp is present
+    - hence, moved it outside
+- Addressed compiler warnings like 
+  - If you are using @PostMapping, you do not need to @RequestMapping -> fixed that
+  - removed unused imports, spellings
+  - improved assertions in tests
+  - made variables final wherever needed
+
 - ms for apis
-- Queries in config
