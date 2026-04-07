@@ -97,6 +97,11 @@
   - Created QueryRegistry to store extracted queries
 - Extracted Query logic outside StudentDao to get from configs
 
+### Config registry
+- configRegistery class to store all the read configs
+- RegistryKey to act as key to store configs in registry
+  - hashCode() override used inside for utilization in Hash-based Collections, such as HashMap, HashSet, or Hashtable
+
 - Also Extracted setParameters for prepared statement logic from above.
 - ms for apis
 - Queries in config
