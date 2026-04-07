@@ -61,7 +61,20 @@ public class AccessStudentData {
             params.put(JsonInputFields.ENTITY_ID.getValue(), 2);
             params.put(JsonInputFields.ENTITY_NAME.getValue(), "Ayan");
 
-            Map<String, Object> output = accessStudentData(params);
+            Map<String, Object> output = new HashMap<>();
+            if(!params.containsKey(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue())){
+                output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Action field is not present in params");
+                System.out.println(output);
+                continue;
+            }
+            StudentManagementAction action = StudentManagementAction.fromString((String) params.get(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue()));
+            if(StudentManagementAction.INVALID_ACTION.equals(action)){
+                output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Specified action is Invalid");
+                System.out.println(output);
+                continue;
+            }
+
+            output = accessStudentData(params);
             System.out.println(output);
         }
 
@@ -101,16 +114,7 @@ public class AccessStudentData {
         Map<String, Object> output = new HashMap<>();
         output.put(JsonOutputFields.REQUEST_PARAMS.getValue(), params);
 
-        if(!params.containsKey(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue())){
-            output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Action field is not present in params");
-            return output;
-        }
         StudentManagementAction action = StudentManagementAction.fromString((String) params.get(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue()));
-        if(StudentManagementAction.INVALID_ACTION.equals(action)){
-            output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), "Specified action is Invalid");
-            return output;
-        }
-
         Student student = getStudentFromParams(params);
         output.putAll( StudentDao.execute(action, student));
         return output;

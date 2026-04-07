@@ -9,10 +9,15 @@ import java.util.Map;
 public class QueriesConfig {
     private String type;
     private String subtype;
-    private List<String> params;
+    private Map<String, String> params;
     private Map<String, QueryDefinition> queries;
 
-    public QueriesConfig() { } // Explicit no-args constructor
+    /*
+    Explicit no-args constructor
+    Required for JSON extraction
+     */
+    public QueriesConfig() { }
+
     public String getType() {
         return type;
     }
@@ -21,11 +26,11 @@ public class QueriesConfig {
         this.type = type;
     }
 
-    public List<String> getParams() {
+    public Map<String, String> getParams() {
         return params;
     }
 
-    public void setParams(List<String> params) {
+    public void setParams(Map<String, String> params) {
         this.params = params;
     }
 

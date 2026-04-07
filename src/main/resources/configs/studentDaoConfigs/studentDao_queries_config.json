@@ -1,27 +1,30 @@
 {
   "type" : "Queries_Config",
   "subtype" : "Student_Dao",
-  "params" : ["id", "name"],
+  "params" : {
+    "id" : "Integer",
+    "name" : "String"
+  },
   "queries" : {
     "add_student_query" : {
       "query" : "insert into students(id, name) values (?, ?)",
-      "params" : ["id", "name"]
+      "requiredParams" : ["id", "name"]
     },
     "delete_student_query" : {
       "query" : "delete from students where id = ?",
-      "params" : ["id"]
+      "requiredParams" : ["id"]
     },
     "display_student_query" : {
       "query" : "select * from students where id = ?",
-      "params" : ["id"]
+      "requiredParams" : ["id"]
     },
     "display_all_students_query" : {
       "query" : "select * from students",
-      "params" : []
+      "requiredParams" : []
     },
     "update_student_query" : {
       "query" : "update students set name = ? where id = ?",
-      "params" : ["name", "id"]
+      "requiredParams" : ["name", "id"]
     }
   }
 }

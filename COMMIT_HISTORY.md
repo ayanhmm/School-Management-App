@@ -31,6 +31,8 @@
 - created studentDao class to manipulate student data in mysql database.
 - DAO stands for Data Access Object, a design pattern used to separate database operations from business logic  
 - added mysql connector jar maven dependency and created ConnectionProvider for mysql
+- can also use hibernate which is actually build over JDBC
+- can also use JPA which also gives additional abilities
 
 ### Logs 
 - Added MAVEN dependencies for slf4j API for logging
@@ -115,5 +117,11 @@
   - removed unused imports, spellings
   - improved assertions in tests
   - made variables final wherever needed
+
+### Validation Layer
+- QueriesConfig now also specifies the datatypes of params.
+- Validation package in models to house all validation procedures
+- AccessStudentDataDtoValidation to validate db query requests - moved validation procedure outside of accessStudentData
+- optimised setParameters for preparedStatement to take datatype from config
 
 - ms for apis

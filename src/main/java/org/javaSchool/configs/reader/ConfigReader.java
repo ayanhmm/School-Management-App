@@ -30,10 +30,12 @@ public class ConfigReader {
         QueriesConfig queriesConfig = QueriesConfigLoader.load(filePath);
         String type = queriesConfig.getType();
         String subtype = queriesConfig.getSubtype();
+        var ParamDatatype = queriesConfig.getParams();
         var queryMap = queriesConfig.getQueries();
         for(var query : queryMap.entrySet()){
             String queryName = query.getKey();
             QueryDefinition value = query.getValue();
+            value.setParamDatatype(ParamDatatype);
             ConfigRegistry.addConfigToRegistry(type, subtype, queryName, value);
         }
     }
