@@ -1,7 +1,9 @@
-package org.javaSchool.studentManagement;
+package org.javaSchool.models.DAO;
 
 import org.javaSchool.databaseConnectivity.mysql.ConnectionProvider;
-import org.javaSchool.studentManagement.studentDaoUtils.SetParametersForPreparedStatement;
+import org.javaSchool.models.DAO.studentDaoUtils.SetParametersForPreparedStatement;
+import org.javaSchool.studentManagement.AccessStudentData;
+import org.javaSchool.studentManagement.Student;
 import org.javaSchool.utils.JsonOutputFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +16,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static org.javaSchool.studentManagement.studentDaoUtils.GetQueryForPreparedStatement.getQueryForPreparedStatement;
+import static org.javaSchool.models.DAO.studentDaoUtils.GetQueryForPreparedStatement.getQueryForPreparedStatement;
 
 public class StudentDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentDao.class);

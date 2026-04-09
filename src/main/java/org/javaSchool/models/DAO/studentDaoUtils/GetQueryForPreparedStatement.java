@@ -1,4 +1,4 @@
-package org.javaSchool.studentManagement.studentDaoUtils;
+package org.javaSchool.models.DAO.studentDaoUtils;
 
 import org.javaSchool.configs.reader.ConfigRegistry;
 import org.javaSchool.configs.reader.queriesConfigReader.QueryDefinition;

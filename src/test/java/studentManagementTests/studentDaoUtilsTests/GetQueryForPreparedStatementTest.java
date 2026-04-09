@@ -2,7 +2,7 @@ package studentManagementTests.studentDaoUtilsTests;
 
 import org.javaSchool.configs.reader.ConfigReader;
 import org.javaSchool.studentManagement.AccessStudentData;
-import org.javaSchool.studentManagement.studentDaoUtils.GetQueryForPreparedStatement;
+import org.javaSchool.models.DAO.studentDaoUtils.GetQueryForPreparedStatement;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

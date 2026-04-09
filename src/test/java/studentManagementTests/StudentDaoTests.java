@@ -3,7 +3,7 @@ package studentManagementTests;
 import org.javaSchool.configs.reader.ConfigReader;
 import org.javaSchool.studentManagement.AccessStudentData;
 import org.javaSchool.studentManagement.Student;
-import org.javaSchool.studentManagement.StudentDao;
+import org.javaSchool.models.DAO.StudentDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

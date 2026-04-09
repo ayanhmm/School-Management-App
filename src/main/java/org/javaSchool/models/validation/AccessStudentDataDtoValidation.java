@@ -4,7 +4,7 @@ import org.javaSchool.configs.reader.ConfigRegistry;
 import org.javaSchool.configs.reader.queriesConfigReader.QueryDefinition;
 import org.javaSchool.models.DTO.AccessStudentDataDTO;
 import org.javaSchool.studentManagement.AccessStudentData;
-import org.javaSchool.studentManagement.studentDaoUtils.StudentDaoUtils;
+import org.javaSchool.models.DAO.studentDaoUtils.StudentDaoUtils;
 
 import java.util.List;
 

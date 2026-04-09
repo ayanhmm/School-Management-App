@@ -1,18 +1,16 @@
 package org.javaSchool.api;
 
 import io.swagger.v3.oas.annotations.Operation;
+import org.javaSchool.models.MS.AccessStudentDataService;
 import org.javaSchool.utils.JsonOutputFields;
 import org.springframework.web.bind.annotation.*;
 
 import org.javaSchool.models.DTO.AccessStudentDataDTO;
 import org.javaSchool.studentManagement.AccessStudentData;
-import org.javaSchool.utils.JsonInputFields;
-import org.javaSchool.models.validation.AccessStudentDataDtoValidation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -39,22 +37,8 @@ public class StudentManagementRestAPI {
             description = "Allows management of data for students"
     )
     public Map<String, Object> accessStudentDataAPI(@RequestBody AccessStudentDataDTO accessStudentDataDTO){
-
-        try{
-            AccessStudentDataDtoValidation.validateAccessStudentDataDto(accessStudentDataDTO);
-        } catch (Exception e) {
-            Map<String, Object> output = new HashMap<>();
-            output.put(JsonOutputFields.ERROR_MESSAGE.getValue(), e.getMessage());
-            output.put(JsonOutputFields.SUCCESS_BOOLEAN.getValue(), false);
-            return output;
-        }
-
-        Map<String, Object> params = new HashMap<>();
-        if(accessStudentDataDTO.getStudentManagementAction() != null)params.put(JsonInputFields.STUDENT_MANAGEMENT_ACTION.getValue(), accessStudentDataDTO.getStudentManagementAction().toString());
-        if(accessStudentDataDTO.getId() != null)params.put(JsonInputFields.ENTITY_ID.getValue(), accessStudentDataDTO.getId());
-        if(accessStudentDataDTO.getName() != null)params.put(JsonInputFields.ENTITY_NAME.getValue(), accessStudentDataDTO.getName());
-        LOGGER.info("accessStudentDataAPI API hit with params : {}", params);
-        return AccessStudentData.accessStudentData(params);
+        LOGGER.info("accessStudentDataAPI API hit with params : {}", accessStudentDataDTO.toString());
+        return AccessStudentDataService.handle(accessStudentDataDTO);
     }
 
     @GetMapping("/accessData/possibleActions")

@@ -39,4 +39,13 @@ public class AccessStudentDataDTO {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString(){
+        return "DTO { " +
+                "Id = " +  id +
+                ";Name = " +  name +
+                ";studentManagementAction = " +  studentManagementAction.getValue() +
+                " }";
+    }
 }

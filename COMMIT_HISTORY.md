@@ -124,4 +124,12 @@
 - AccessStudentDataDtoValidation to validate db query requests - moved validation procedure outside of accessStudentData
 - optimised setParameters for preparedStatement to take datatype from config
 
+### Service based architecture
+- extracted service logic from api to separate service entity
+- created directory models.ms for the same
+  - @Service: This tells Spring that this class is a "Bean." Spring will automatically create an instance of it and manage its lifecycle.
+  - @Autowired: This is Dependency Injection. Instead of you writing new Registry(), Spring "plugs in" the already existing instances of the Registry into this class.
+    - Later can replace it with custom annotation and logic
+- relocated DAO to models for better structuring purposes
+
 - ms for apis

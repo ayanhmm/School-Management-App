@@ -3,7 +3,7 @@ package org.javaSchool.databaseConnectivity.mysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import org.javaSchool.studentManagement.StudentDao;
+import org.javaSchool.models.DAO.StudentDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
