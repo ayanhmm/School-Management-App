@@ -2,7 +2,6 @@ package org.javaSchool.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.javaSchool.models.MS.AccessStudentDataService;
-import org.javaSchool.utils.JsonOutputFields;
 import org.springframework.web.bind.annotation.*;
 
 import org.javaSchool.models.DTO.AccessStudentDataDTO;

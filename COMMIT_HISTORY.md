@@ -132,4 +132,18 @@
     - Later can replace it with custom annotation and logic
 - relocated DAO to models for better structuring purposes
 
-- ms for apis
+### Connection properties config
+- created config to store all properties relating to establishing connection to a database
+- created base class configs which will now be inherited by all configs 
+  - this utilizes @JsonTypeInfo and @JsonSubTypes
+  - first tells what field to refer to when assigning to subclass while second tells mapping on what field value what sub class is created
+  - @JsonTypeInfo looks like
+    - use :: This defines how the type is identified. Id.NAME - via logical name 
+    - include :: This defines where the type information is located. As.PROPERTY means the type info is just another field inside the JSON object itself. 
+    - property :: name of json field that defines the name 
+    - visible = true :: means config should also extract the field declared in "property" -> skipped by default
+  - @JsonSubTypes looks like :: ({ @JsonSubTypes.Type(value = QueriesConfig.class, name = "Queries_Config"), ...})
+- replaced string with enums when reading configs
+- generic configLoader introduced -> QueriesConfigLoader deprecated
+- config reader can now read configs based on directory path alone
+- updated connection providers to use the new config

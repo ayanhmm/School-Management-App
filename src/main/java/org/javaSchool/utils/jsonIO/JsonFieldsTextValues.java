@@ -1,4 +1,4 @@
-package org.javaSchool.utils;
+package org.javaSchool.utils.jsonIO;
 
 public class JsonFieldsTextValues {
 //    common fields for both incoming and responding to API calls

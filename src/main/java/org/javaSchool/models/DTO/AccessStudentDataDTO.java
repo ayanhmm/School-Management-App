@@ -2,7 +2,7 @@ package org.javaSchool.models.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.javaSchool.studentManagement.AccessStudentData;
-import org.javaSchool.utils.JsonFieldsTextValues;
+import org.javaSchool.utils.jsonIO.JsonFieldsTextValues;
 
 
 public class AccessStudentDataDTO {

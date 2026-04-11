@@ -1,8 +1,8 @@
 package org.javaSchool.studentManagement;
 
 import org.javaSchool.models.DAO.StudentDao;
-import org.javaSchool.utils.JsonInputFields;
-import org.javaSchool.utils.JsonOutputFields;
+import org.javaSchool.utils.jsonIO.JsonInputFields;
+import org.javaSchool.utils.jsonIO.JsonOutputFields;
 
 import java.io.BufferedReader;
 import java.io.IOException;

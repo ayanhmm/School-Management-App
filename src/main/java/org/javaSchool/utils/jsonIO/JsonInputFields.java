@@ -1,4 +1,4 @@
-package org.javaSchool.utils;
+package org.javaSchool.utils.jsonIO;
 
 import java.util.HashMap;
 import java.util.Map;

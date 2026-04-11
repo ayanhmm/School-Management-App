@@ -7,8 +7,9 @@ import org.slf4j.LoggerFactory;
 import java.io.InputStream;
 
 public class QueriesConfigLoader {
-    private static Logger LOGGER = LoggerFactory.getLogger(QueriesConfigLoader.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QueriesConfigLoader.class);
 
+    @Deprecated
     public static QueriesConfig load(String filePath){
         try {
         ObjectMapper mapper = new ObjectMapper();

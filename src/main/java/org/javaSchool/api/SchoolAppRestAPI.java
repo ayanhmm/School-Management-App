@@ -1,6 +1,6 @@
 package org.javaSchool.api;
 
-import org.javaSchool.utils.JsonInputFields;
+import org.javaSchool.utils.jsonIO.JsonInputFields;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

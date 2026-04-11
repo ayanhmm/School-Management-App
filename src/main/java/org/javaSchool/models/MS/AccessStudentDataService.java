@@ -3,8 +3,8 @@ package org.javaSchool.models.MS;
 import org.javaSchool.models.DTO.AccessStudentDataDTO;
 import org.javaSchool.models.validation.AccessStudentDataDtoValidation;
 import org.javaSchool.studentManagement.AccessStudentData;
-import org.javaSchool.utils.JsonInputFields;
-import org.javaSchool.utils.JsonOutputFields;
+import org.javaSchool.utils.jsonIO.JsonInputFields;
+import org.javaSchool.utils.jsonIO.JsonOutputFields;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

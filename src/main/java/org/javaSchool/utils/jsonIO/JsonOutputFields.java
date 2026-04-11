@@ -1,8 +1,7 @@
-package org.javaSchool.utils;
+package org.javaSchool.utils.jsonIO;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public enum JsonOutputFields {
     ERROR_MESSAGE(JsonFieldsTextValues.ERROR_MESSAGE),

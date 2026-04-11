@@ -4,7 +4,7 @@ import org.javaSchool.databaseConnectivity.mysql.ConnectionProvider;
 import org.javaSchool.models.DAO.studentDaoUtils.SetParametersForPreparedStatement;
 import org.javaSchool.studentManagement.AccessStudentData;
 import org.javaSchool.studentManagement.Student;
-import org.javaSchool.utils.JsonOutputFields;
+import org.javaSchool.utils.jsonIO.JsonOutputFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

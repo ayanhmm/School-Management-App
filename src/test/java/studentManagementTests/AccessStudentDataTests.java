@@ -3,7 +3,7 @@ package studentManagementTests;
 import org.javaSchool.studentManagement.AccessStudentData.StudentManagementAction;
 import static org.javaSchool.studentManagement.AccessStudentData.accessStudentData;
 
-import org.javaSchool.utils.JsonOutputFields;
+import org.javaSchool.utils.jsonIO.JsonOutputFields;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

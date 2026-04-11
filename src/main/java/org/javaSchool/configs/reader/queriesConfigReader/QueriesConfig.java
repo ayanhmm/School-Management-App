@@ -1,16 +1,14 @@
 package org.javaSchool.configs.reader.queriesConfigReader;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.javaSchool.configs.reader.Config;
 
-import java.util.List;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class QueriesConfig {
-    private String type;
-    private String subtype;
-    private Map<String, String> params;
-    private Map<String, QueryDefinition> queries;
+public class QueriesConfig extends Config {
+    private Map<String, String> paramDatatype;
+    public Map<String, QueryDefinition> components;
 
     /*
     Explicit no-args constructor
@@ -18,35 +16,21 @@ public class QueriesConfig {
      */
     public QueriesConfig() { }
 
-    public String getType() {
-        return type;
+    public Map<String, String> getParamDatatype() {
+        return paramDatatype;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setParamDatatype(Map<String, String> paramDatatype) {
+        this.paramDatatype = paramDatatype;
     }
 
-    public Map<String, String> getParams() {
-        return params;
+    @Override
+    public Map<String, QueryDefinition> getComponents() {
+        return components;
     }
 
-    public void setParams(Map<String, String> params) {
-        this.params = params;
+    public void setComponents(Map<String, QueryDefinition> components) {
+        this.components = components;
     }
 
-    public Map<String, QueryDefinition> getQueries() {
-        return queries;
-    }
-
-    public void setQueries(Map<String, QueryDefinition> queries) {
-        this.queries = queries;
-    }
-
-    public String getSubtype() {
-        return subtype;
-    }
-
-    public void setSubtype(String subtype) {
-        this.subtype = subtype;
-    }
 }

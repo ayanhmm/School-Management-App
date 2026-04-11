@@ -2,7 +2,10 @@ package org.javaSchool.databaseConnectivity.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Map;
 
+import org.javaSchool.configs.reader.ConfigRegistry;
+import org.javaSchool.configs.reader.databaseConnectivityConfigsReader.ConnectionDefinition;
 import org.javaSchool.models.DAO.StudentDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +16,15 @@ public class ConnectionProvider {
 
     public static Connection createConnection() throws Exception{
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            ConnectionDefinition connectionDefinition = (ConnectionDefinition) ConfigRegistry.getConfigFromRegistry("Connection_Properties_Config", "mysql", "Mysql_Connection_A");
+            String classname = connectionDefinition.getClassname();
+            Map<String, String> credentials = connectionDefinition.getCredentials();
 
-            String user = "root";
-            String password = "root";
-            String url = "jdbc:mysql://localhost:3306/student_manage";
+            Class.forName(classname);
+
+            String user = credentials.get("username");
+            String password = credentials.get("password");
+            String url = credentials.get("url");
 
             connection = DriverManager.getConnection(url, user, password);
         } catch (Exception ex) {
