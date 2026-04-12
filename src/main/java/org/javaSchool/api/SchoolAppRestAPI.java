@@ -1,5 +1,8 @@
 package org.javaSchool.api;
 
+import org.javaSchool.api.utils.ApiExecutor;
+import org.javaSchool.models.MS.SchoolAppMs;
+import org.javaSchool.models.MS.StudentManagementMs;
 import org.javaSchool.utils.jsonIO.JsonInputFields;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,18 +13,15 @@ import java.util.Set;
 @RestController
 @RequestMapping("/javaschool")
 public class SchoolAppRestAPI {
+    static final Class<SchoolAppMs> SERVICE_CLASS = SchoolAppMs.class;
 
     @RequestMapping("/health")
     public String health(){
-        return "Java School API running";
+        return ApiExecutor.invokeService(SERVICE_CLASS, service -> service.handleHealth());
     }
 
     @RequestMapping("/possibleInputFields")
     public Set<String> getPossibleInputFields(){
-        Set<String> output = new HashSet<>();
-        for (JsonInputFields field : JsonInputFields.values()) {
-            output.add(field.getValue()) ;
-        }
-        return output;
+        return ApiExecutor.invokeService(SERVICE_CLASS, service -> service.handleGetPossibleInputFields());
     }
 }

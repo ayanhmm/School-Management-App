@@ -69,6 +69,13 @@
             <version>2.5.0</version>
         </dependency>
 
+        <!-- Enables Reflections   -->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

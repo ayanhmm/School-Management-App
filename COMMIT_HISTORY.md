@@ -147,3 +147,30 @@
 - generic configLoader introduced -> QueriesConfigLoader deprecated
 - config reader can now read configs based on directory path alone
 - updated connection providers to use the new config
+
+### Microservice Ready API executor
+- ApiExecutor to execute functions for all API requests
+- Created interface Microservice - now all services will implement this class
+  - new inheritance heredity :: Microservice -> interface SpecificServiceMs -> class SpecificServiceMsimpl
+  - this is done to safely create proxies, since proxies can only be created on interfaces
+- Instead of calling services directly, ApiExecutor calls them on a proxy
+  - this proxy can later be configured to handle grpc requests.
+  - MsProxyProvider is responsible to provide proxies to all the services 
+  - MsInvocationHandler handles proxy logic, only one since all have the same grpc call logic
+- Annotation MsImplMetadata to mark all the service implication classes
+- MsRegistry to lazily load those implications 
+  - utilizes reflection to read MsImplMetadata from SpecificServiceMsImpl and link it to SpecificServiceMs
+  - Added Maven dependency for reflection
+  - used by the ApiServiceExecutor to access services 
+
+### Dependency Injection for services
+
+- Add JPA / Hibernate
+- Authentication & Authorization
+- concurrency in config reader
+- Add:
+  - Rate limiting
+  - Retry mechanisms
+  - Circuit breaker (Resilience4j)
+  - Pagination in api
+- Add integration tests
