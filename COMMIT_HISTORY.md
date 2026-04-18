@@ -163,7 +163,10 @@
   - Added Maven dependency for reflection
   - used by the ApiServiceExecutor to access services 
 
-### Dependency Injection for services
+### Self Implemented Dependency Injection
+- created DI based formation in MsRegistry
+- Added ability to determine circular dependency and log it for the same
+- MsDiConstructor annotation specifies which constructor will be used when lazy loading a ms
 
 - Add JPA / Hibernate
 - Authentication & Authorization
@@ -174,3 +177,5 @@
   - Circuit breaker (Resilience4j)
   - Pagination in api
 - Add integration tests
+- api end point to return all api endpoints and operations offered
+- execute groovy strings

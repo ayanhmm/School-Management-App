@@ -1,6 +1,8 @@
 package org.javaSchool.models.MS.impl;
 
+import org.javaSchool.models.MS.SchoolAppHelperMs;
 import org.javaSchool.models.MS.SchoolAppMs;
+import org.javaSchool.models.MS.utils.MsDiConstructor;
 import org.javaSchool.models.MS.utils.MsImplMetadata;
 import org.javaSchool.utils.jsonIO.JsonInputFields;
 
@@ -12,9 +14,15 @@ import java.util.Set;
         description = "Service for basic API endpoints"
 )
 public class SchoolAppMsImpl implements SchoolAppMs {
+    SchoolAppHelperMs schoolAppHelperMs;
+
+    @MsDiConstructor
+    public SchoolAppMsImpl(SchoolAppHelperMs schoolAppHelperMs){
+        this.schoolAppHelperMs = schoolAppHelperMs;
+    }
 
     public String handleHealth(){
-        return "Java School API running";
+        return schoolAppHelperMs.handleHealth();
     }
 
     public Set<String> handleGetPossibleInputFields(){
